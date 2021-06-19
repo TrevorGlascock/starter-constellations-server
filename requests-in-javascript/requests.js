@@ -94,15 +94,16 @@ function doThis3() {
           console.log(`List of all Constellations:`);
           console.log(allStars.data, "\n");
 
+          const starURL = `${url}/${myStar.id}`;
           // *** //  DELETE THE NEWLY ADDED STAR // *** //
-          _deleteStar(`${url}/${myStar.id}`, myStar)
+          _deleteStar(starURL, myStar)
             //after deleting the one we just added, attempt to access it and expect a 404
             .then(() => {
               console.log(
                 `We will now attempt to access the deleted ${myStar.name} @ ${myStar.id}`
               );
               //And finally, let's check to see if we get a 404 with a get request to the deleted url
-              return _getDeletedStar(`${url}/${myStar.id}`)
+              return _getDeletedStar(starURL)
                 .then(() => console.log("You shouldn't see this message..."))
                 .catch((error) => `Error: ${error}`);
             })
